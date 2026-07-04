@@ -1,0 +1,11 @@
+faster-whisper>=1.2.1,<2
+pynput>=1.8.2
+sounddevice>=0.5.5
+scipy>=1.13
+pywin32>=306
+pystray>=0.19.5
+pillow>=10
+huggingface_hub>=0.23
+# GPU (CUDA 12): DLL-и cuBLAS/cuDNN для ctranslate2; на ПК без NVIDIA просто не используются
+nvidia-cublas-cu12; platform_system == "Windows"
+nvidia-cudnn-cu12>=9; platform_system == "Windows"
