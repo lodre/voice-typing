@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Для юнит-тестов тяжёлые ASR-зависимости (faster-whisper, CUDA ~1.3 ГБ)
+      # не нужны: faster_whisper импортируется лениво внутри Transcriber.load()
+      - name: Install test dependencies
+        run: pip install pynput sounddevice scipy pywin32 pystray pillow pytest
+
+      - name: Compile all sources
+        run: python -m compileall -q vt app.py download_model.py smoke_test.py
+
+      - name: Run tests
+        run: pytest -v

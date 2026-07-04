@@ -74,6 +74,9 @@ py -3.12 -m venv .venv
 
 Сборка переносимой папки: `build.ps1` (PyInstaller onedir + копирование модели).
 
+Тесты: `pip install pytest`, затем `pytest` из корня проекта (модель и микрофон не нужны).
+Они же гоняются в CI (GitHub Actions) на каждый push.
+
 ## Если что-то не работает
 
 Лог пишется в `voice-typing.log` рядом с программой.
