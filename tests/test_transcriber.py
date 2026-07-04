@@ -3,8 +3,10 @@ from pathlib import Path
 from vt.transcriber import _ascii_safe_path
 
 
-def test_ascii_path_unchanged(tmp_path):
-    assert _ascii_safe_path(tmp_path) == str(tmp_path)
+def test_ascii_path_unchanged():
+    # ASCII-ветка возвращает строку сразу, не трогая диск, поэтому путь
+    # может не существовать; литерал не зависит от расположения temp pytest
+    assert _ascii_safe_path(Path(r"C:\Temp\models")) == r"C:\Temp\models"
 
 
 def test_cyrillic_path_resolves_to_existing(tmp_path):
